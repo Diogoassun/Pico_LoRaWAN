@@ -1,0 +1,7 @@
+backup/
+.vscode/
+build/
+*.o
+*.elf
+*.bin
+*.map
