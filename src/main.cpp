@@ -173,22 +173,16 @@ void vLoRaSenderTask(void *pvParameters) {
     }
 
     while (true) {
-        // 1. Cria o buffer para a string (igual ao 'message[100]' da sua foto)
         char payload_str[100]; 
-        
-        // Exemplo de variável float (como na sua foto)
+
         float Int_calculada = 0.000121f; 
 
-        // 2. Formata a string usando snprintf
         snprintf(payload_str, sizeof(payload_str), "c|%f", Int_calculada);
 
         printf("[Sender] Preparando envio (String): %s\n", payload_str);
-        
-        // Limpa o buffer serial
+
         uart_tx_wait_blocking(UART_PRINT_ID); 
-        
-        // 3. Envia a string! 
-        // Fazemos um 'cast' para (uint8_t*) e usamos strlen() para enviar apenas os caracteres úteis
+
         LoRaWan_Send((uint8_t*)payload_str, strlen(payload_str));
 
         // Feedback Visual
